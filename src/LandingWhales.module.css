@@ -111,6 +111,9 @@
     max-height: 100%;
   }
   .address {
+    border: none;
+  outline: none;
+  box-shadow: none;
     position: relative;
     line-height: 120%;
     font-weight: 500;

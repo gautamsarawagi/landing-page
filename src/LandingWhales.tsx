@@ -1,7 +1,24 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import styles from "./LandingWhales.module.css";
+// import { useNavigate } from "react-router-dom";
 
 const LandingWhales: FunctionComponent = () => {
+
+
+  const [email,setEmail] = useState("")
+
+  const handleClick = () => {
+    const trimmedEmail = email.trim(); // Trim any leading or trailing whitespaces
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (trimmedEmail.length > 0 && emailRegex.test(trimmedEmail)) {
+      window.open('https://app.loch.one/welcome', '_blank');
+    } else {
+      alert('Invalid Email');
+    }
+
+  };
+
   return (
 
     <div className={styles.container}>
@@ -36,30 +53,31 @@ const LandingWhales: FunctionComponent = () => {
       <div className={styles.headerBg} />
       <img className={styles.vectorIcon} alt="" src="/Vector.png" />
       <div className={styles.blank1Parent}>
-        <div className={styles.blank1}>
-          <div className={styles.address}>Your email address</div>
-        </div>
-        <div className={styles.addWrapper}>
-          <div className={styles.add}>
-            <div className={styles.yashP}>
-              You’ll receive an email with an invite link to join.
-            </div>
-          </div>
-        </div>
-        <div className={styles.addContainer}>
-          <div className={styles.add1}>
-            <div className={styles.yashP}>Get started</div>
-          </div>
-        </div>
-        <div className={styles.groupWrapper}>
-          <div className={styles.secondaryLabelWrapper}>
-            <div className={styles.secondaryLabel}>
-              <p className={styles.signUpFor}>{`Sign up for `}</p>
-              <p className={styles.signUpFor}>exclusive access.</p>
-            </div>
-          </div>
-        </div>
+  <div className={styles.blank1}>
+    <input type="email" className={styles.address} placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)}/>
+  </div>
+  <div className={styles.addWrapper}>
+    <div className={styles.add}>
+      <div className={styles.yashP}>
+        You’ll receive an email with an invite link to join.
       </div>
+    </div>
+  </div>
+  <button className={styles.addContainer} onClick={handleClick}>
+    <div className={styles.add1}>
+      <div className={styles.yashP}>Get started</div>
+    </div>
+  </button>
+  <div className={styles.groupWrapper}>
+    <div className={styles.secondaryLabelWrapper}>
+      <div className={styles.secondaryLabel}>
+        <p className={styles.signUpFor}>{`Sign up for `}</p>
+        <p className={styles.signUpFor}>exclusive access.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
       <div className={styles.secondaryLabelParent}>
         <div className={styles.secondaryLabel1}>
           Get notified when a highly correlated whale makes a move
